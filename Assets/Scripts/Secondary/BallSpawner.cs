@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Scripts.Rendering;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Scripts.Secondary
 
     public class BallSpawner : MonoBehaviour
     {
+        [SerializeField]
+        private SpawnerRenderer _lSystem;
         [SerializeField]
         private GameObject _ball;
         [SerializeField, Range(1, 1000)]
@@ -18,8 +21,9 @@ namespace Scripts.Secondary
         [SerializeField]
         private Vector2 _zSpread;
         //Event
-        public void SpawnBalls(GameObject origin)
+        public void SpawnBalls()
         {
+            var origin = _lSystem.first.gameObject;
             var socket = origin.transform.GetChild(origin.transform.childCount - 1);
             for (int i = 0; i < _nb; i++)
             {

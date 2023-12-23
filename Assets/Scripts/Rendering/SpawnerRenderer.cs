@@ -4,32 +4,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 namespace Scripts.Rendering
 {
+    public interface IRenderer<Context>
+    {
+        public void UpdateRender(Context c);
+    }
 
-    public class SpawnerRenderer : MonoBehaviour
+    public class SpawnerRenderer : MonoBehaviour, IRenderer<Context2D>, IRenderer<Context3D>
     {
         [SerializeField] private GameObject _prefab;
-        internal GameObject UpdateRender(Context2D context)
+        public GameObject first = null;
+        public void CreateObject(Vector3 localPos,Vector3 localScale,Quaternion localRotation)
         {
             var o = Instantiate(_prefab, transform);
-            o.transform.localPosition = context.pos;
-            o.transform.localScale = Vector3.one;//Add scale used in action forward
-            o.transform.localEulerAngles = (Vector3.forward * context.Rot);
-            return o;
+            o.transform.localPosition = localPos;
+            o.transform.localScale = localScale;//Add scale used in action forward
+            if (!first)
+                first = o;
+            o.transform.localRotation = localRotation;
+        }
+        public void UpdateRender(Context2D context)
+        {
+            CreateObject(context.pos, Vector3.one, Quaternion.Euler((Vector3.forward * context.Rot)));
         }
 
-        // Start is called before the first frame update
-        void Start()
+        public void UpdateRender(Context3D c)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            CreateObject(c.pos, Vector3.one, c.rot);
         }
     }
 
