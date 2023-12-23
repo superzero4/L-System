@@ -1,4 +1,5 @@
 ﻿
+using Scripts.Common.Rendering;
 using Scripts.Sequence.Context;
 using System;
 using System.Collections;
@@ -8,10 +9,6 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 namespace Scripts.Rendering
 {
-    public interface IRenderer<Context>
-    {
-        public void UpdateRender(Context c);
-    }
 
     public class SpawnerRenderer : MonoBehaviour, IRenderer<Context2D>, IRenderer<Context3D>
     {

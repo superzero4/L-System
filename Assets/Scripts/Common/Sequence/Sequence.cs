@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations;
 
-namespace Scripts.Sequence
+namespace Scripts.Common.Sequence
 {
 
     public class Sequence<T>

@@ -1,15 +1,16 @@
-﻿using Scripts.Rendering;
+﻿using Scripts.Common.Rendering;
+using Scripts.Rendering;
+using Scripts.Common;
 using Scripts.Sequence;
 using Scripts.Sequence.Action;
 using Scripts.Sequence.Context;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
 
-namespace Scripts
+namespace Scripts.L2D
 {
-    public class LSystem : LSystemBase<Context2D>
+    public class LSystem2D : LSystemBase<Context2D>
     {
         [SerializeField]
         private SpawnerRenderer _renderer;

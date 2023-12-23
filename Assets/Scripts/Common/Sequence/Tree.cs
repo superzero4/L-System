@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Scripts.Sequence
+namespace Scripts.Common.Sequence
 {
 
     public class Tree<T> : IEnumerable<T>

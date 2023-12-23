@@ -1,13 +1,12 @@
 ﻿using Scripts.Chain;
-using Scripts.Rendering;
-using Scripts.Sequence;
+using Scripts.Common.Rendering;
+using Scripts.Common.Sequence;
 using Scripts.Sequence.Action;
-using Scripts.Sequence.Context;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Scripts
+namespace Scripts.Common
 {
     public abstract class LSystemBase<Context> : MonoBehaviour
     {
@@ -47,7 +46,7 @@ namespace Scripts
             }
             _onEnd.Invoke();
         }
-        protected Sequence.Sequence<Context> Generate(IEnumerable<EAction> actionSequence)
+        protected Sequence<Context> Generate(IEnumerable<EAction> actionSequence)
         {
             return new Sequence<Context>(Traductor,actionSequence);
         }
