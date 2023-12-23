@@ -38,7 +38,7 @@ namespace Scripts
         }
         void Main2D(IEnumerable<EAction> actionSequence)
         {
-            var seq = new Sequence.Sequence<Action2D>(new ActionTranslator<Action2D>((EAction type) =>
+            var seq = new Sequence.Sequence<Context2D>(new ActionTranslator<Context2D>((EAction type, ContextAction<Context2D> parent) =>
             {
                 Action2D action = null;
                 switch (type)
@@ -49,7 +49,7 @@ namespace Scripts
                     case EAction.Forward:
                     case EAction.TurnL:
                     case EAction.TurnR:
-                        action = new Action2D(ctx, type, _settings.Delta, 1);
+                        action = new Action2D(parent?.NextContext() ?? new Context2D(), type, _settings.Delta, 1);
                         break;
                 }
                 return action;
@@ -59,7 +59,7 @@ namespace Scripts
                 //Debug.Log($"executing => {a?.ToString()}");
                 if (a.Action == EAction.Forward)
                     _renderer.UpdateRender(a.Context);
-                a.Execute();
+                //a.Execute();
             }
         }
     }

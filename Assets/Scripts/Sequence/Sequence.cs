@@ -8,22 +8,22 @@ using UnityEngine.Animations;
 namespace Scripts.Sequence
 {
 
-    public class Sequence<T> where T : BaseAction
+    public class Sequence<T>
     {
-        public Tree<T> _tree;
+        public Tree<ContextAction<T>> _tree;
         public ContextAction<EAction> _action;
 
-        public Sequence(ITranslator<EAction, T> traductor, IEnumerable<EAction> actions)
+        public Sequence(ITranslator<EAction, ContextAction<T>, ContextAction<T>> traductor, IEnumerable<EAction> actions)
         {
             var e = actions.GetEnumerator();
             if (e.MoveNext())
             {
-                _tree = new Tree<T>(traductor.Translate(e.Current));
+                _tree = new Tree<ContextAction<T>>(traductor.Translate(e.Current,default));
                 Add(traductor, e, _tree);
             }
         }
 
-        private void Add(ITranslator<EAction, T> traductor, IEnumerator<EAction> actionEnumerator, Tree<T> current, int addIndex = 0)
+        private void Add(ITranslator<EAction, ContextAction<T>, ContextAction<T>> traductor, IEnumerator<EAction> actionEnumerator, Tree<ContextAction<T>> current, int addIndex = 0)
         {
             while (actionEnumerator.MoveNext())
             {
@@ -37,9 +37,9 @@ namespace Scripts.Sequence
                         return;
                     default:
                         addIndex++;
-                        T translated = traductor.Translate(action);
+                        var translated = traductor.Translate(action,current.Content);
                         current = current.AddChild(translated);
-                        //Debug.Log($"Adding child {addIndex}, with action {action} => {translated}, with parent having {current.Parent?.DirectChildrenCount()} childs and parent of parent having{current.Parent?.Parent?.DirectChildrenCount()} childs");
+                        Debug.Log($"Adding child {addIndex}, with action {action} => {translated}, with parent having {current.Parent?.DirectChildrenCount()} childs and parent of parent having{current.Parent?.Parent?.DirectChildrenCount()} childs");
                         break;
                 }
             }
@@ -47,7 +47,7 @@ namespace Scripts.Sequence
             return;
         }
 
-        public IEnumerable<T> Enumerable()
+        public IEnumerable<ContextAction<T>> Enumerable()
         {
             return _tree;
         }

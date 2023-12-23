@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:Scripts.Chain:ReplacementRules
   _rules:
   - c: 70
-    s: FFFF
+    s: F[+F]F
   _settings:
     _input: F
     _depth: 1

@@ -23,23 +23,34 @@ namespace Scripts.Sequence.Action
         }
         public override string ToString()
         {
-            return base.ToString()+ " "+action.ToString();
+            return " " + action.ToString();
         }
     }
     public abstract class ContextAction<C> : BaseAction
     {
-        private C _context;
-
-        public C Context { get => _context; }
-
-        public abstract void Execute(C c, EAction action);
+        protected C _context;
+        public C Context
+        {
+            get
+            {
+                return _context;
+            }
+        }
+        public C NextContext()
+        {
+            //We simulate on localCopied var parentContext the parent so we start our new context from correct point
+            var copy = _context;
+            this.Execute(ref copy, Action);
+            return copy;
+        }
+        public abstract void Execute(ref C c, EAction action);
         public ContextAction(C context, EAction action) : base(action)
         {
             _context = context;
         }
         public override void Execute()
         {
-            Execute(_context, action);
+            Execute(ref _context, action);
         }
     }
     public class Action2D : ContextAction<Context2D>
@@ -51,27 +62,28 @@ namespace Scripts.Sequence.Action
             this.forwardStep = forwardStep;
         }
 
-        public override void Execute(Context2D c, EAction action)
+        public override void Execute(ref Context2D c, EAction action)
         {
             switch (action)
             {
                 case EAction.Forward:
-                    c.pos += (new Vector2(Mathf.Cos((c.rot+90)* Mathf.Deg2Rad), Mathf.Sin((c.rot+90) * Mathf.Deg2Rad)).normalized * forwardStep);
+                    c.pos += (new Vector2(Mathf.Cos((c.Rot) * Mathf.Deg2Rad), Mathf.Sin((c.Rot) * Mathf.Deg2Rad)).normalized * forwardStep);
                     break;
+                //Trigonometral way, going to top, left is postive, right is negative
                 case EAction.TurnL:
-                    c.rot -= rotStep;
+                    c.Rot += rotStep;
                     break;
                 case EAction.TurnR:
-                    c.rot += rotStep;
+                    c.Rot -= rotStep;
                     break;
                 default:
                     break;
             }
-            Debug.Log($"Current context after executing {action} : {c.pos},{c.rot}");
+            Debug.Log($"Current context after executing {action} : {_context.pos},{_context.Rot}");
         }
         public override string ToString()
         {
-            return base.ToString()+$" rot => {rotStep}, forwardStep => {forwardStep}";
+            return base.ToString() + $" rot => {rotStep}, forwardStep => {forwardStep}";
         }
     }
 

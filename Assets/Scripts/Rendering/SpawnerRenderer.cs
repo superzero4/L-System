@@ -16,7 +16,7 @@ namespace Scripts.Rendering
             var o = Instantiate(_prefab, transform);
             o.transform.localPosition = context.pos;
             o.transform.localScale = Vector3.one;//Add scale used in action forward
-            o.transform.Rotate(Vector3.forward * context.rot);
+            o.transform.Rotate(Vector3.forward * context.Rot);
         }
 
         // Start is called before the first frame update

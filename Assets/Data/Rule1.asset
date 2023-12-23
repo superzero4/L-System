@@ -17,5 +17,5 @@ MonoBehaviour:
     s: F[+F]F[-F]F
   _settings:
     _input: F
-    _depth: 2
-    _delta: 22
+    _depth: 3
+    _delta: 25.7
