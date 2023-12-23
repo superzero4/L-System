@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c7d49fa894683418ce936983760105, type: 3}
-  m_Name: Alphabet
-  m_EditorClassIdentifier: 
-  _map:
+  m_Script: {fileID: 11500000, guid: e6cdb0814535b0248a7be76ad38d8011, type: 3}
+  m_Name: SimpleForward
+  m_EditorClassIdentifier: Assembly-CSharp:Scripts.Chain:ReplacementRules
+  _rules:
   - c: 70
-    action: 0
-  - c: 43
-    action: 2
-  - c: 45
-    action: 1
+    s: FFFF
+  _settings:
+    _input: F
+    _depth: 1
+    _delta: 90

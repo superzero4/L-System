@@ -10,6 +10,7 @@ namespace Scripts.Sequence
     public interface ITranslator<Input, Output>
     {
         Output Translate(Input i);
+        
     }
     public class ActionTranslator<T> : ITranslator<EAction, T> where T : BaseAction
     {

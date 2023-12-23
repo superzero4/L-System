@@ -8,12 +8,12 @@ namespace Scripts.Sequence.Context{
     {
         
     }
-    public class Context2D : BaseContext
+    public struct Context2D 
     {
         public float rot;
         public Vector2 pos;
     }
-    public class Context3D : BaseContext
+    public struct Context3D
     {
         public Quaternion rot;
         public Vector3 pos;

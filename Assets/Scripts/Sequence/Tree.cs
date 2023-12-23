@@ -10,6 +10,7 @@ namespace Scripts.Sequence
     {
         T content;
         IEnumerable<Tree<T>> _childrens;
+        public int DirectChildrenCount() => _childrens.Count();
         Tree<T> _parent;
         public Tree()
         {
@@ -21,12 +22,14 @@ namespace Scripts.Sequence
         }
 
         public T Content { get => content; set => content = value; }
+        public Tree<T> Parent { get => _parent; set => _parent = value; }
 
-        public void AddChile(T t)
+        public Tree<T> AddChild(T t)
         {
             Tree<T> son = new Tree<T>(t);
-            son._parent = son;
-            _childrens.Append(son);
+            son._parent = this;
+            this._childrens = this._childrens.Append(son);
+            return son;
         }
         public IEnumerator<T> GetEnumerator()
         {

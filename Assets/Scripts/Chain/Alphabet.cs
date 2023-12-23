@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Scripts.Chain
 {
 
-    [CreateAssetMenu(fileName = "Alphabet", menuName = "Alphabet")]
+    [CreateAssetMenu(fileName = "Alphabet", menuName = "LS/Alphabet")]
     public class Alphabet : ScriptableObject
     {
         [SerializeField]
