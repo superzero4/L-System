@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &676388510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +156,9 @@ MonoBehaviour:
   _alphabet: {fileID: 11400000, guid: 8c85c60474a638343b32bc32b2553d36, type: 2}
   _rules: {fileID: 11400000, guid: 34212b212400e8e4584c385c16e9e022, type: 2}
   _renderer: {fileID: 676388512}
+  _onEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &676388511
 Transform:
   m_ObjectHideFlags: 0
@@ -183,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976a055a1b64a214b92e663b957c493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2056743579936104178, guid: dde9d2172766f3b4b9905111e11ebe00, type: 3}
+  _prefab: {fileID: 2056743579936104178, guid: 69fbbe8c16f7106459a78b021f5a6fe4, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +292,7 @@ GameObject:
   - component: {fileID: 882524054}
   - component: {fileID: 882524053}
   - component: {fileID: 882524052}
+  - component: {fileID: 882524055}
   m_Layer: 0
   m_Name: Marbles
   m_TagString: Untagged
@@ -308,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976a055a1b64a214b92e663b957c493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2056743579936104178, guid: dde9d2172766f3b4b9905111e11ebe00, type: 3}
+  _prefab: {fileID: 2056743579936104178, guid: 69fbbe8c16f7106459a78b021f5a6fe4, type: 3}
 --- !u!114 &882524053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +328,21 @@ MonoBehaviour:
   _alphabet: {fileID: 11400000, guid: 8c85c60474a638343b32bc32b2553d36, type: 2}
   _rules: {fileID: 11400000, guid: 34212b212400e8e4584c385c16e9e022, type: 2}
   _renderer: {fileID: 882524052}
+  _onEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 882524055}
+        m_TargetAssemblyTypeName: Scripts.Secondary.BallSpawner, Assembly-CSharp
+        m_MethodName: SpawnBalls
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &882524054
 Transform:
   m_ObjectHideFlags: 0
@@ -339,6 +358,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -120, y: 0, z: 90}
+--- !u!114 &882524055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882524051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8804ab6bbc1d344c8a8d98b6c73b298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ball: {fileID: 8144957056815580020, guid: c029688935c4c4945aa30ae25b2f536c, type: 3}
+  _nb: 50
+  _xSpread: {x: -1, y: 1}
+  _ySpread: {x: 0.1, y: 1}
+  _zSpread: {x: 0.1, y: 1}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

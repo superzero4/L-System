@@ -6,6 +6,7 @@ using Scripts.Sequence.Context;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Scripts
 {
@@ -18,6 +19,9 @@ namespace Scripts
         private Replacement _rules;
         [SerializeField]
         private SpawnerRenderer _renderer;
+        [SerializeField]
+        private UnityEvent<GameObject> _onEnd;
+        private GameObject first = null;
         private LSettings _settings => _rules.Settings;
         private int depth => _settings.Depth;
         private float delta => _settings.Delta;
@@ -56,11 +60,14 @@ namespace Scripts
             }), actionSequence);
             foreach (var a in seq.Enumerable())
             {
-                //Debug.Log($"executing => {a?.ToString()}");
                 if (a.Action == EAction.Forward)
-                    _renderer.UpdateRender(a.Context);
-                //a.Execute();
+                {
+                    var o = _renderer.UpdateRender(a.Context);
+                    if (!first)
+                        first = o;
+                }
             }
+            _onEnd.Invoke(first);
         }
     }
 
