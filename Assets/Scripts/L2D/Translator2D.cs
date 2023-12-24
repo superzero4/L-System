@@ -25,7 +25,7 @@ namespace Scripts.L2D
                 case EAction.Forward:
                 case EAction.TurnL:
                 case EAction.TurnR:
-                    action = new Action2D(parent?.NextContext() ?? new Context2D(), type, delta, 1);
+                    action = new Action2D(parent?.NextContext() ?? new Context2D(), type, delta);
                     break;
             }
             return action;

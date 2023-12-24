@@ -1,15 +1,13 @@
-﻿using Scripts.Sequence.Context;
+﻿using Scripts.Sequence.Action;
+using Scripts.Sequence.Context;
 using UnityEngine;
 
-namespace Scripts.Sequence.Action
+namespace Scripts.L2D
 {
-    public class Action2D : ContextAction<Context2D>
+    public class Action2D : StepContextAction<Context2D>
     {
-        private float rotStep, forwardStep;
-        public Action2D(Context2D context, EAction action, float rotStep = 15f, float forwardStep = 1f) : base(context, action)
+        public Action2D(Context2D context, EAction action, float rotStep = 15, float forwardStep = 1) : base(context, action, rotStep, forwardStep)
         {
-            this.rotStep = rotStep;
-            this.forwardStep = forwardStep;
         }
 
         public override void Execute(ref Context2D c, EAction action)
@@ -30,10 +28,6 @@ namespace Scripts.Sequence.Action
                     break;
             }
             Debug.Log($"Current context after executing {action} : {_context.pos},{_context.Rot}");
-        }
-        public override string ToString()
-        {
-            return base.ToString() + $" rot => {rotStep}, forwardStep => {forwardStep}";
         }
     }
 
