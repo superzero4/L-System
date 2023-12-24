@@ -5,14 +5,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 namespace Scripts.Rendering
 {
-
     public class SpawnerRenderer : MonoBehaviour, IRenderer<Context2D>, IRenderer<Context3D>
     {
         [SerializeField] private GameObject _prefab;
+        [HideInInspector]
         public GameObject first = null;
         public void CreateObject(Vector3 localPos,Vector3 localScale,Quaternion localRotation)
         {

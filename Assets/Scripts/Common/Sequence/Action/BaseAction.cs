@@ -6,7 +6,11 @@ namespace Scripts.Sequence.Action
 {
     public enum EAction
     {
-        Begin = -2, End = -1, Forward = 1, TurnL = 2, TurnR = 3
+        Begin = -2, End = -1, 
+        Forward = 1, 
+        TurnL = 2, TurnR = 3,
+
+        PitchDown = 14,PitchUp = 15, RollLeft=16, RollRight=17,TurnAround=18,
     }
     public abstract class BaseAction
     {

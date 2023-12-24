@@ -1,17 +1,18 @@
-﻿using Scripts.Chain;
+﻿using Scripts.Common.Chain;
 using Scripts.Common.Rendering;
 using Scripts.Common.Sequence;
 using Scripts.Sequence.Action;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Scripts.Common
 {
-    public abstract class LSystemBase<Context> : MonoBehaviour
+    public abstract class LSystemBase<Context,Unused> : MonoBehaviour where Unused : Enum
     {
         [SerializeField]
-        private Alphabet _alphabet;
+        private Alphabet<EAction> _alphabet;
         [SerializeField]
         private Replacement _rules;
         [SerializeField]
@@ -39,16 +40,16 @@ namespace Scripts.Common
             var seq = Generate(actionSequence);
             foreach (var a in seq.Enumerable())
             {
-                if (a.Action == EAction.Forward)
+                if (a.Action == Scripts.Sequence.Action.EAction.Forward)
                 {
                     Renderer.UpdateRender(a.Context);
                 }
             }
             _onEnd.Invoke();
         }
-        protected Sequence<Context> Generate(IEnumerable<EAction> actionSequence)
+        protected Sequence<Context,Unused> Generate(IEnumerable<EAction> actionSequence)
         {
-            return new Sequence<Context>(Traductor,actionSequence);
+            return new Sequence<Context,Unused>(Traductor,actionSequence);
         }
     }
 

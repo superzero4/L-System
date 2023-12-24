@@ -1,4 +1,5 @@
 ﻿using Scripts.Sequence.Action;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,12 @@ using UnityEngine.Animations;
 
 namespace Scripts.Common.Sequence
 {
-
-    public class Sequence<T>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="Action">Unused yet</typeparam>
+    public class Sequence<T,Action> where Action : Enum 
     {
         public Tree<ContextAction<T>> _tree;
         public ContextAction<EAction> _action;

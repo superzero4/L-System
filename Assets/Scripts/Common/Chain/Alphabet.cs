@@ -1,15 +1,12 @@
-﻿using Scripts.Sequence.Action;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Scripts.Chain
+namespace Scripts.Common.Chain
 {
-
-    [CreateAssetMenu(fileName = "Alphabet", menuName = "LS/Alphabet")]
-    public class Alphabet : ScriptableObject
+    public class Alphabet<Action> : ScriptableObject where Action : Enum
     {
         [SerializeField]
         List<Character> _map;
@@ -17,11 +14,11 @@ namespace Scripts.Chain
         public struct Character
         {
             public char c;
-            public EAction action;
+            public Action action;
         }
-        public IEnumerable<EAction> Actions(string input)
+        public IEnumerable<Action> Actions(string input)
         {
-            Dictionary<char, EAction> dico = _map.ToDictionary(kv => kv.c,kv=> kv.action);
+            Dictionary<char, Action> dico = _map.ToDictionary(kv => kv.c, kv => kv.action);
             return input.Select(c => dico[c]);
         }
     }

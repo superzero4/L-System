@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cdb0814535b0248a7be76ad38d8011, type: 3}
+  m_Name: Rules3D1
+  m_EditorClassIdentifier: 
+  _rules:
+  - c: 65
+    s: "B-F+CFC+F-D&F\u2227D-F+&&CFC+F+B//"
+  - c: 66
+    s: "A&F\u2227CFB\u2227F\u2227D\u2227\u2227-F-D\u2227|F\u2227B|FC\u2227F\u2227A//"
+  - c: 67
+    s: "|D\u2227|F\u2227B-F+C\u2227F\u2227A&&FA&F\u2227C+F+B\u2227F\u2227D//"
+  - c: 68
+    s: "CFB-F+B|FA&F\u2227A&&FB-F+B|FC//"
+  _settings:
+    _input: A
+    _depth: 3
+    _delta: 90

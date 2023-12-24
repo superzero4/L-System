@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Scripts.L2D
 {
-    public class LSystem2D : LSystemBase<Context2D>
+    public class LSystem2D : LSystemBase<Context2D,EAction>
     {
         [SerializeField]
         private SpawnerRenderer _renderer;

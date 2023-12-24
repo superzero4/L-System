@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Scripts.Chain
+namespace Scripts.Common.Chain
 {
 
     [System.Serializable]
