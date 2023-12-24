@@ -13,7 +13,7 @@ namespace Scripts.L2D
         }
         public override string ToString()
         {
-            return base.ToString() + $" rot => {rotStep}, forwardStep => {forwardStep}";
+            return base.ToString() + $" rot => {rotStep}, forwardStep => {forwardStep} => {_context.ToString()}";
         }
     }
 }

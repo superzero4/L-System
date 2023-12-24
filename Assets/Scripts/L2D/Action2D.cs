@@ -10,7 +10,7 @@ namespace Scripts.L2D
         {
         }
 
-        public override void Execute(ref Context2D c, EAction action)
+        public override Context2D Execute(Context2D c, EAction action)
         {
             switch (action)
             {
@@ -27,7 +27,7 @@ namespace Scripts.L2D
                 default:
                     break;
             }
-            Debug.Log($"Current context after executing {action} : {_context.pos},{_context.Rot}");
+            return c;
         }
     }
 

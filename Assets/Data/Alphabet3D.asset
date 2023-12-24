@@ -27,6 +27,8 @@ MonoBehaviour:
     action: 14
   - c: 94
     action: 15
+  - c: 8743
+    action: 15
   - c: 92
     action: 16
   - c: 47

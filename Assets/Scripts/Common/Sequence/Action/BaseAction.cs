@@ -41,18 +41,18 @@ namespace Scripts.Sequence.Action
         public C NextContext()
         {
             //We simulate on localCopied var parentContext the parent so we start our new context from correct point
-            var copy = _context;
-            this.Execute(ref copy, Action);
+            var copy=this.Execute(_context, Action);
+            //UnityEngine.Debug.Log($"Currnet => {_context.ToString()} Next context => {copy.ToString()}");
             return copy;
         }
-        public abstract void Execute(ref C c, EAction action);
+        public abstract C Execute(C c, EAction action);
         public ContextAction(C context, EAction action) : base(action)
         {
             _context = context;
         }
         public override void Execute()
         {
-            Execute(ref _context, action);
+            _context=Execute(_context, action);
         }
     }
 }

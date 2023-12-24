@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scripts.Sequence.Action;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,13 @@ namespace Scripts.Common.Chain
         public IEnumerable<Action> Actions(string input)
         {
             Dictionary<char, Action> dico = _map.ToDictionary(kv => kv.c, kv => kv.action);
-            return input.Select(c => dico[c]);
+            //We only return valid keys that were mapped explicitely to actions
+            return input.Select(c =>
+            {
+                if (dico.TryGetValue(c, out Action a))
+                    return (a,true);
+                else return (default,false);
+            }).Where(x=>x.Item2).Select(x=>x.a);
         }
     }
 
